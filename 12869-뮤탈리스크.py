@@ -1,28 +1,22 @@
 import sys 
-from collections import deque
 
 N = int(sys.stdin.readline().strip())
 
 HP = list(map(int, sys.stdin.readline().strip().split(' ')))
+HP.extend([0,0])
 
-attack = [9, 3, 1]
+dp = [[[0]*61 for _ in range(61)] for _ in range(61)]
+dp[HP[0]][HP[1]][HP[2]] = 1
+comb = [(9, 3, 1), (9, 1, 3), (3, 9, 1), (3, 1, 9), (1, 9, 3), (1, 3, 9)]
 
-def BFS(N, HP) :
-    count = 0
-    
-    while True :
-        HP.sort(reverse=True)
-        
-        for i in range(N) :
-            if HP[i] > -1 :
-                HP[i] -= attack[i]
-        count += 1
-        stop = 0
-        print(HP)
-        for elem in HP :
-            if elem <= 0 :
-                stop += 1
-        if stop == 3 :
-            return count
-        
-print(BFS(N,HP))
+for i in range(60, -1, -1):
+    for j in range(60, -1, -1):
+        for k in range(60, -1, -1):
+            if dp[i][j][k] > 0 :
+                for attack in comb :
+                    ii = i - attack[0] if i - attack[0] >= 0 else 0 
+                    jj = j - attack[1] if j - attack[1] >= 0 else 0 
+                    kk = k - attack[2] if k - attack[2] >= 0 else 0 
+                    if dp[ii][jj][kk] == 0 or dp[ii][jj][kk] > dp[i][j][k]+1 :
+                        dp[ii][jj][kk] = dp[i][j][k] + 1
+print(dp[0][0][0]-1)
