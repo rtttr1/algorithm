@@ -2,15 +2,17 @@ import sys
 input = sys.stdin.readline
 
 N, M = map(int, input().split())
-poketmon = []
-
-for _ in range(N):
-    poketmon.append(str(input().rstrip()))
+poketmon = {}
+poketmonKey = {}
+for i in range(1, N+1):
+    temp = input().rstrip()
+    poketmon[i] = str(temp)
+    poketmonKey[temp] = i
 
 for _ in range(M):
     temp = input().rstrip()
-    
-    if isinstance(temp, int):
-        print(poketmon[temp-1])
+
+    if temp.isdigit():
+        print(poketmon[int(temp)])
     else:
-        print(poketmon.index(temp)+1)
+        print(poketmonKey.get(temp))
