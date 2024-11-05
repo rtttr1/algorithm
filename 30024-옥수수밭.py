@@ -1,6 +1,5 @@
 import sys
 input = sys.stdin.readline
-from collections import deque
 from queue import PriorityQueue
 
 N, M = map(int, input().split())
@@ -12,31 +11,28 @@ dy = [0, 1, 0, -1]
 visited = [[False]*M for _ in range(N)]
 pQueue = PriorityQueue()
 
+# 가장자리 노드들 우선순위 큐에 넣기
 for i in range(N):
-    pQueue.put(graph[0, i])
-    pQueue.put(graph[M, i])
-for j in range(1, M-1):
-    pQueue.put(graph[j, 0])
-    pQueue.put(graph[j, N])
+    for j in range(M):
+        if i == 0 or i == N - 1 or j == 0 or j == M-1:
+            pQueue.put((-graph[i][j], i, j))
+            visited[i][j] = True
 
-def BFS():
-    queue = deque([[-1, -1, 0]])
-
-    while queue:
-        x, y, count = queue.popleft()
-
-        if count == K:
-            return count
+# BFS 
+for i in range(K):
+    if not pQueue.empty():
+        node, x, y = pQueue.get()
         
-        for i in range(4):
-            nx = x + dx[i]
-            ny = y + dy[i]
+        # 수확한 옥수수 출력
+        print(x+1, y+1)
+    
+    
+        for j in range(4):
+            nx = x + dx[j]
+            ny = y + dy[j]
 
-            if nx < 0 or nx > M or ny < 0 or ny > N or visited[ny][nx] == True:
+            # 칸 벗어남 or 이미 방문 노드 거르기
+            if nx < 0 or nx >= N or ny < 0 or ny >= M or visited[nx][ny]:
                 continue
-            if 
-            
-            
-
-
-
+            pQueue.put((-graph[nx][ny],  nx, ny))
+            visited[nx][ny] = True
