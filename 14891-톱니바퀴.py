@@ -1,57 +1,54 @@
 import sys
 from collections import deque
-
 input = sys.stdin.readline
 
-tooth = []
-top = [0,0,0,0]
-
-for _ in range(4):
-    tooth.append(list(map(int,input().rstrip())))
-
+tooth = [deque(list(map(int, input().rstrip()))) for _ in range(4)]
 K = int(input().rstrip())
 
-queue = deque([])
+# K번 회전
+for _ in range(K):
+    default = []
+    for i in range(4):
+        default.append([tooth[i][6], tooth[i][2]])
+    number, turn = map(int, input().split())
+    number -= 1
+
+    if number > 0:
+        for i in range(number, 0, -1):
+            if default[i][0] != default[i-1][1]:
+                if (number-(i-1)) % 2 == 0:
+                    tooth[i-1].rotate(turn)
+                else:
+                    tooth[i-1].rotate(turn*(-1))
+            else:
+                break
+    
+    if number < 3:
+        for i in range(number, 3):
+            if default[i][1] != default[i+1][0]:
+                if (number-(i+1)) % 2 == 0:
+                    tooth[i+1].rotate(turn)
+                else:
+                    tooth[i+1].rotate(turn*(-1))
+            else:
+                break
+    
+    tooth[number].rotate(turn)
+
+answer = 0
+if tooth[0][0] == 1:
+    answer +=1    
+if tooth[1][0] == 1:
+    answer +=2    
+if tooth[2][0] == 1:
+    answer +=4   
+if tooth[3][0] == 1:
+    answer +=8    
+
+print(answer)
 
 
-for i in range(K):
-    temp = list(map(int, input().split()))
-    visited = [False]*4
-    visited[temp[0]-1] = True
-    queue.append(temp)
-
-    while queue:
-        n, turn = queue.popleft()
-        print(n, turn)
-
-        if n-2 > -1 and tooth[n-2][top[n-2]+2] != tooth[n-1][top[n-1]-2] and not visited[n-1] :
-            top[n-2] -= turn
-            queue.append([n-2, -turn])
-            visited[n-2] = True
-        elif n < 4 and tooth[n][top[n]-2] != tooth[n-1][top[n-1]+2] and not visited[n-1] :
-            top[n] -= turn
-            queue.append([n, -turn])
-            visited[n] = True
-        top[n-1] += turn
-
-print(top)
-sum = 0
-for i in range(4):
-    if tooth[i][top[i]] == 1:
-        sum += pow(2,i)
-print(sum)
+    
 
 
 
-
-
-
-
-
-
-       
-        
-                
-                    
-
-                
