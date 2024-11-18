@@ -1,0 +1,1 @@
+count += W - bridge.getLength() + 1;
