@@ -1,8 +1,11 @@
 import sys
+input = sys.stdin.readline
 
-A = int(sys.stdin.readline().strip())
-B = int(sys.stdin.readline().strip())
-C = int(sys.stdin.readline().strip())
-
-print(A+B-C)
-print(int(str(A)+str(B))-C)
+arr = list(map(str,input().rstrip()))
+answer = ''
+for elem in arr:
+    if elem.isupper():
+        answer += elem.lower()
+    else:
+        answer += elem.upper()
+print(answer)

@@ -1,31 +1,25 @@
 import sys
 input = sys.stdin.readline
 
-a = str(input().rstrip())
+N, M = map(int, input().split())
+dict = {}
+for _ in range(N):
+    elem = list(map(str, input().split()))
 
-if a == 'A+':
-    print(4.3)
-elif a == 'A0':
-    print(4.0)
-elif a == 'A-':
-    print(3.7)
-elif a == 'B+':
-    print(3.3)
-elif a == 'B0':
-    print(3.0)
-elif a == 'B-':
-    print(2.7)
-elif a == 'C+':
-    print(2.3)
-elif a == 'C0':
-    print(2.0)
-elif a == 'C-':
-    print(1.7)
-elif a == 'D+':
-    print(1.3)
-elif a == 'D0':
-    print(1.0)
-elif a == 'D-':
-    print(0.7)
-elif a == 'F':
-    print(0.0)
+    T = int(elem[0])
+    S = str(elem[1])
+    arr = ''.join(elem[2:5])
+
+    if arr not in dict:
+        dict[arr] = S
+    else:
+        dict[arr] = '?'
+
+for _ in range(M):
+    arr = ''.join(list(map(str, input().split())))
+
+    if arr in dict:
+        print(dict[arr])
+    else:
+        print('!')
+                  
