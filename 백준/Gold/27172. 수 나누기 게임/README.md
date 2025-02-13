@@ -40,3 +40,8 @@
 
  <p>첫 번째 플레이어부터 <mjx-container class="MathJax" jax="CHTML" style="font-size: 109%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D441 TEX-I"></mjx-c></mjx-mi></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>N</mi></math></mjx-assistive-mml><span aria-hidden="true" class="no-mathjax mjx-copytext">$N$</span></mjx-container>번째 플레이어까지 게임이 종료됐을 때의 각 플레이어의 점수를 공백으로 구분하여 출력해주세요.</p>
 
+### 풀이
+
+에라토스테네스의 체를 생각해내면 풀 수 있다.
+단순하게 모든 플레이어의 대결을 비교하면 O(n^2) 으로 시간 초과가 난다.
+이때 에라토스테네스의 체를 살짝 변형하여 주면 nlog(log n) 으로 시간 초과 없이 문제를 해결 할 수 있다.
