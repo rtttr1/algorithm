@@ -5,17 +5,10 @@ N, M = map(int, input().split())
 arr = [list(map(str, input().strip())) for _ in range(N)]
 
 # 제곱수인지 확인하는 함수
-def zegop(x):
-    if x == 0 or x == 1: return True
+def zegop(S):
+    S = int(S)
+    return int(S ** 0.5) ** 2 == S
 
-    for i in range(1, x):
-        num = i**2
-        if num == x:
-            return True
-        if num > x: 
-            return False
-        
-    return False
 
 answer = -1
 # (x,y)의 시작점
