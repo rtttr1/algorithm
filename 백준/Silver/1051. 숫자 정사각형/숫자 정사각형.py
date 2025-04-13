@@ -15,8 +15,6 @@ def search(x, y):
             if cm + y < M and graph[x][y+cm] == num and graph[i][y+cm] == num:
                 answer = max(answer, (cm+1)**2)
 
-
-
 for x in range(N):
     for y in range(M):
         search(x,y)
