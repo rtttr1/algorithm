@@ -4,7 +4,7 @@ input = sys.stdin.readline
 
 K = int(input().rstrip())
 
-MAX = 1000000
+MAX = 10000000
 prime = [True for i in range(MAX+1)]
 prime[1] = False
 
