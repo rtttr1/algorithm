@@ -16,12 +16,14 @@ const arr = input.slice(1).flat();
 for (let t = 0; t < T; t++) {
   const [W, K] = [arr[t * 2], arr[t * 2 + 1]];
   let [long, short] = [-1, 100001];
-  const wordMap = new Map();
 
+  // 문자열에 포함된 알파벳 카운팅해주는 Map
+  const wordMap = new Map();
   for (let i = 0; i < W.length; i++) {
     wordMap.set(W[i], wordMap.get(W[i]) + 1 || 1);
   }
 
+  // K개가 넘는 알파벳 카운트
   const words = [];
   wordMap.forEach((v, key) => {
     if (v >= K) words.push(key);
@@ -33,6 +35,7 @@ for (let t = 0; t < T; t++) {
       let [left, right, count] = [0, 0, 0];
       if (W[0] === word) count++;
 
+      // 투포인터로 word가 K개인 상황 확인
       while (left < W.length && right < W.length) {
         if (count == K) {
           while (true) {
