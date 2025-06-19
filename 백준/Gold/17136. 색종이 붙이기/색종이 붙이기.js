@@ -56,6 +56,7 @@ const back = (count, idx) => {
 
   const [x, y] = coors[index];
 
+  // 1 - 5 크기의 정사각형 경우의수 따지기
   for (let l = 4; l >= 0; l--) {
     if (papers[l] == 5 || x + l >= 10 || y + l >= 10) continue;
 
@@ -69,6 +70,7 @@ const back = (count, idx) => {
   }
 };
 
+// 1인 좌표 찾기
 const coors = [];
 for (let i = 0; i < 10; i++) {
   for (let j = 0; j < 10; j++) {
@@ -77,8 +79,6 @@ for (let i = 0; i < 10; i++) {
 }
 
 back(0, 0);
-if (answer == 100) {
-  console.log(-1);
-} else {
-  console.log(answer);
-}
+
+if (answer == 100) console.log(-1);
+else console.log(answer);
