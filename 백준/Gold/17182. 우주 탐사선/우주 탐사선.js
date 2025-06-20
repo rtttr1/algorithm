@@ -21,7 +21,6 @@ for (let k = 0; k < N; k++) {
 }
 
 // 백트래킹으로 모든 경우의 수 돌려보기?? N이 10개니까 시간복잡도 충분히 통과!
-
 let answer = 10e9;
 const visited = Array.from({ length: N }, () => false);
 visited[K] = true;
